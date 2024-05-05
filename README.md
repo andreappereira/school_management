@@ -4,7 +4,7 @@ School Management is a Python application designed to for school registration ma
 ## Technologies Used
 - Python: The core programming language used for backend development.
 
-Django: Framework for building and running web applications using Python.
+- Django: Framework for building and running web applications using Python.
 
 - Django REST framework: Powerful and flexible toolkit for building Web APIs.
 
