@@ -1,4 +1,6 @@
 from rest_framework import viewsets, generics
+from rest_framework.authentication import BasicAuthentication
+from rest_framework.permissions import IsAuthenticated
 
 from registration.models import Registration
 from registration.serializers import ListRegistrationStudentSerializer, ListStudentsEnrolledInTheCourseSerializer, RegistrationSerializer
@@ -6,6 +8,9 @@ from registration.serializers import ListRegistrationStudentSerializer, ListStud
 
 class RegistrationViewSet(viewsets.ModelViewSet):
     """Return all registrations."""
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
     serializer_class = RegistrationSerializer
 
     queryset = Registration.objects.all()
@@ -13,6 +18,9 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     
 class ListRegistrationStudent(generics.ListAPIView):
     """Return all registrations of student."""
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
+
     serializer_class = ListRegistrationStudentSerializer
 
     def get_queryset(self):
@@ -24,6 +32,8 @@ class ListRegistrationStudent(generics.ListAPIView):
 
 class ListStudentsEnrolledInTheCourse(generics.ListAPIView):
     """Return all registration students in the course."""
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
     serializer_class = ListStudentsEnrolledInTheCourseSerializer
 
