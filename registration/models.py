@@ -14,3 +14,4 @@ class Registration(models.Model):
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     course = models.ForeignKey(course, on_delete=models.CASCADE)
     period = models.IntegerField(choices=Period.choices, blank=False, null=False)
+    active = models.BooleanField(blank=False, null=False, default=True)
