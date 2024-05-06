@@ -1,9 +1,17 @@
 from rest_framework import serializers
 
 from registration.models import Registration
+from registration.validators import *
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
+    def validate(self, data):
+  
+        if validate_existing_registration(data['student'], data['course'], data['period']):
+            raise serializers.ValidationError("This registration already exists.")
+
+        return data
+    
     class Meta:
         model = Registration
         fields = '__all__'
