@@ -20,7 +20,6 @@ class RegistrationViewSet(viewsets.ModelViewSet):
 
     queryset = Registration.objects.all()
 
-    
 class ListRegistrationStudent(generics.ListAPIView):
     """Return all registrations of student."""
     authentication_classes = [BasicAuthentication]
@@ -34,7 +33,6 @@ class ListRegistrationStudent(generics.ListAPIView):
         queryset = Registration.objects.filter(student_id=pk)
         return queryset
     
-
 class ListStudentsEnrolledInTheCourse(generics.ListAPIView):
     """Return all registration students in the course."""
     authentication_classes = [BasicAuthentication]
@@ -47,4 +45,3 @@ class ListStudentsEnrolledInTheCourse(generics.ListAPIView):
 
         queryset = Registration.objects.filter(course_id=pk)
         return queryset
-

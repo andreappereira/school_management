@@ -5,7 +5,7 @@ django.setup()
 
 import random
 from student.models import Student
-from course.models import course
+from course.models import Course
 from faker import Faker
 from validate_docbr import CPF
 
@@ -20,18 +20,21 @@ def create_students(quantity):
         date_of_birth = fake.date_of_birth()
         active = random.choice([True, False])
 
-        p = Student(name=name, document=document, date_of_birth=date_of_birth, active=active)
-        p.save()
+        student = Student(name=name, document=document, date_of_birth=date_of_birth, active=active)
+        student.save()
 
 def create_courses(quantity):
     for _ in range(quantity):
-        name = fake.name()
-        description = fake.name()
-        level = random.choice([course.courseLevel.ADVANCED, course.courseLevel.BASIC, course.courseLevel.MEDIUM])
+        names = ['Python Fundamentos', 'Python intermediário','Python Avançado', 'Python para Data Science', 'Python/React']
 
-        p = course(name=name, description=description, level=level)
-        p.save()
+        name = random.choice(names)
+        description = name
+        level = random.choice([Course.courseLevel.ADVANCED, Course.courseLevel.BASIC, Course.courseLevel.MEDIUM])
+        names.remove(name) 
+
+        course = Course(name=name, description=description, level=level)
+        course.save()
 
 create_students(50)
-create_courses(50)
+create_courses(5)
 print('Created!')

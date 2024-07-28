@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from course.models import course
+from course.models import Course
 
 
 # Register your models here.
@@ -10,4 +10,4 @@ class courses(admin.ModelAdmin):
     search_fields = ('name',)
     list_per_page = 20
 
-admin.site.register(course, courses)
+admin.site.register(Course, courses)

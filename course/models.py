@@ -1,7 +1,8 @@
 from django.db import models
 
+
 # Create your models here.
-class course(models.Model):
+class Course(models.Model):
     class courseLevel(models.IntegerChoices):
         BASIC = 0, 'Basic',
         MEDIUM = 1, 'Medium',
@@ -13,4 +14,3 @@ class course(models.Model):
 
     def __str__(self) -> str:
         return self.description
-

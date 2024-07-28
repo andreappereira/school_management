@@ -3,7 +3,7 @@ from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
 
-from course.models import course
+from course.models import Course
 from course.serializers import courseSerializer
 
 
@@ -19,4 +19,4 @@ class coursesViewSet(viewsets.ModelViewSet):
     search_fields = ['name']
     filterset_fields = ['level']
 
-    queryset =  course.objects.all()
+    queryset =  Course.objects.all()
