@@ -16,6 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic import RedirectView
 
 from rest_framework import routers
 
@@ -26,15 +27,35 @@ from registration.views import ListRegistrationStudent, ListStudentsEnrolledInTh
 from student.views import StundesViewSet
 
 
-router = routers.DefaultRouter()
-router.register('students', StundesViewSet, basename='Students')
-router.register('courses', coursesViewSet, basename='courses')
-router.register('registrations', RegistrationViewSet, basename='Registrations')
+router_v1 = routers.DefaultRouter()
+router_v1.register('students', StundesViewSet, basename='Students')
+router_v1.register('courses', coursesViewSet, basename='courses')
+router_v1.register('registrations', RegistrationViewSet, basename='Registrations')
+
+router_v2 = routers.DefaultRouter()
+router_v2.register('students', StundesViewSet, basename='Students')
+
 
 urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
-    path('student/<int:pk>/registrations/', ListRegistrationStudent.as_view()),
-    path('course/<int:pk>/students/', ListStudentsEnrolledInTheCourse.as_view()),
+    path('v1/', include((router_v1.urls, 'api'), namespace='v1')),
+    path('v2/', include((router_v2.urls, 'api'), namespace='v2')),
+    path('v1/student/<int:pk>/registrations/', ListRegistrationStudent.as_view(), name='v1-student-registrations'),
+    path('v1/course/<int:pk>/students/', ListStudentsEnrolledInTheCourse.as_view(), name='v1-course-students'),
+    path('', RedirectView.as_view(url='/v1/', permanent=True)),
 ]
+
+
+# router = routers.DefaultRouter()
+# router.register('students', StundesViewSet, basename='Students')
+# router.register('courses', coursesViewSet, basename='courses')
+# router.register('registrations', RegistrationViewSet, basename='Registrations')
+
+# urlpatterns = [
+#     path('api-auth/', include('rest_framework.urls')),
+#     path('admin/', admin.site.urls),
+#     path('', include(router.urls)),
+#     path('student/<int:pk>/registrations/', ListRegistrationStudent.as_view()),
+#     path('course/<int:pk>/students/', ListStudentsEnrolledInTheCourse.as_view()),
+# ]

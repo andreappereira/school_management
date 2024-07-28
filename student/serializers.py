@@ -9,5 +9,17 @@ class StudentSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
-            'document'
+            'document',
+            'date_of_birth'
+        ]
+
+class StudentSerializerV2(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = [
+            'id',
+            'name',
+            'document',
+            'date_of_birth',
+            'cellphone',
         ]
