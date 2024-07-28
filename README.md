@@ -16,17 +16,19 @@ Clone the Repository:
 ```
 git clone https://github.com/andreappereira/school_management.git
 ```
-## Run the PostgreSQL Database with Docker Compose:
 
+
+## Set Up the Application:
+Navigate to the root directory of the project, create a .env file and add the environment variables. Examples in the .env.example file.
+
+
+## Run the PostgreSQL Database with Docker Compose:
 Navigate to the root directory of the project.
 Run the following command to start the PostgreSQL database using Docker Compose:
 ```
 docker-compose up -d
 ```
-## Set Up the Application:
 
-Open the settings.py file located in setup.
-Configure the database connection properties to match the PostgreSQL database running in Docker Compose.
 
 ## Create virtual environment
 Unix/MacOS:
@@ -38,6 +40,7 @@ Windows:
 ```
 py -m venv ./venv
 ```
+
 
 ## Activate the environment
 Unix/MacOS:
