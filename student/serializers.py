@@ -9,4 +9,5 @@ class StudentSerializer(serializers.ModelSerializer):
         fields = [
             'id',
             'name',
+            'document'
         ]
