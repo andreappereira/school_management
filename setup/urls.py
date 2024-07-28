@@ -41,8 +41,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('v1/', include((router_v1.urls, 'api'), namespace='v1')),
     path('v2/', include((router_v2.urls, 'api'), namespace='v2')),
-    path('v1/student/<int:pk>/registrations/', ListRegistrationStudent.as_view(), name='v1-student-registrations'),
-    path('v1/course/<int:pk>/students/', ListStudentsEnrolledInTheCourse.as_view(), name='v1-course-students'),
+    path('v1/students/<int:pk>/registrations/', ListRegistrationStudent.as_view(), name='v1-student-registrations'),
+    path('v1/courses/<int:pk>/students/', ListStudentsEnrolledInTheCourse.as_view(), name='v1-course-students'),
     path('', RedirectView.as_view(url='/v1/', permanent=True)),
 ]
 
