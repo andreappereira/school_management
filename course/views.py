@@ -7,6 +7,7 @@ from course.serializers import CourseSerializer
 
 class coursesViewSet(viewsets.ModelViewSet): 
     """Return all courses."""
+    http_method_names = ['get', 'post', 'put']
     serializer_class = CourseSerializer
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter, filters.SearchFilter]
 
