@@ -17,9 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.views.generic import RedirectView
+from django.conf import settings
+from django.conf.urls.static import static
 
 from rest_framework import routers
-
 
 from course.views import coursesViewSet
 
@@ -44,7 +45,7 @@ urlpatterns = [
     path('v1/students/<int:pk>/registrations/', ListRegistrationStudent.as_view(), name='v1-student-registrations'),
     path('v1/courses/<int:pk>/students/', ListStudentsEnrolledInTheCourse.as_view(), name='v1-course-students'),
     path('', RedirectView.as_view(url='/v1/', permanent=True)),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
 # router = routers.DefaultRouter()

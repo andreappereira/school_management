@@ -8,6 +8,7 @@ class Student(models.Model):
     date_of_birth = models.DateField(blank=False, null=False)
     active = models.BooleanField(blank=False, null=False, default=True)
     cellphone = models.CharField(max_length=11, null=True, default=None)
+    photography = models.ImageField(blank=True)
 
     def __str__(self) -> str:
         return self.name

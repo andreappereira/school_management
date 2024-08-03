@@ -10,7 +10,8 @@ class StudentSerializer(serializers.ModelSerializer):
             'id',
             'name',
             'document',
-            'date_of_birth'
+            'date_of_birth',
+            'photography'
         ]
 
 class StudentSerializerV2(serializers.ModelSerializer):
@@ -21,5 +22,6 @@ class StudentSerializerV2(serializers.ModelSerializer):
             'name',
             'document',
             'date_of_birth',
+            'photography',
             'cellphone',
         ]
