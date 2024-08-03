@@ -1,5 +1,7 @@
-from rest_framework import viewsets, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
+from django.views.decorators.cache import cache_page
+from django.utils.decorators import method_decorator
+from rest_framework import viewsets, generics, filters
 
 from registration.models import Registration
 from registration.serializers import ListRegistrationStudentSerializer, ListStudentsEnrolledInTheCourseSerializer, RegistrationSerializer
@@ -15,6 +17,10 @@ class RegistrationViewSet(viewsets.ModelViewSet):
     filterset_fields = ['active', 'period']
 
     queryset = Registration.objects.all()
+
+    @method_decorator(cache_page(50))
+    def dispatch(self, request, *args, **kwargs):
+        return super(RegistrationViewSet, self).dispatch(*args, **kwargs)
    
 
 class ListRegistrationStudent(generics.ListAPIView):

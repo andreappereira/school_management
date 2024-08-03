@@ -151,3 +151,16 @@ REST_FRAMEWORK = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True 
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django_redis.cache.RedisCache',
+        'LOCATION': config('REDIS_LOCATION'),
+        'OPTIONS': {
+            'CLIENT_CLASS': 'django_redis.client.DefaultClient'
+        }
+    }
+}
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.cache'
+SESSIONS_CACHE_ALIAS = 'default'
